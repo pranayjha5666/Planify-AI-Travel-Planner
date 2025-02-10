@@ -54,7 +54,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 child: Text(
                   "No Notification Yet",
                   style: TextStyle(
-                    fontSize: 25, // 5% of screen height
+                    fontSize: 25,
                     fontFamily: 'Outfit',
                     fontWeight: FontWeight.w500,
                     color: Colors.black,

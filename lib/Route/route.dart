@@ -1,7 +1,5 @@
-
-import 'package:ai_travel_planner/Model/tripdetails_model.dart';
 import 'package:flutter/material.dart';
-
+import 'package:ai_travel_planner/Model/tripdetails_model.dart';
 import '../Components/Screen/About_Me/about_me.dart';
 import '../Components/Screen/Auth/Pages/change_password.dart';
 import '../Components/Screen/Auth/Pages/login_page.dart';

@@ -1,9 +1,7 @@
-import 'package:ai_travel_planner/Components/Screen/Discover/discover_page.dart';
 import 'package:ai_travel_planner/Components/Screen/My_Trip/my_trip_page.dart';
 import 'package:ai_travel_planner/Components/Screen/Profile/profile_page.dart';
 import 'package:flutter/material.dart';
-
-import '../Discover/favtrppage.dart';
+import '../Favorite/favtrppage.dart';
 
 class Home_Page extends StatefulWidget {
   static const String routeName = "/home-screen";
@@ -34,28 +32,28 @@ class _Home_PageState extends State<Home_Page> {
           });
         },
 
-        selectedItemColor: Colors.black, // Default selected item color
+        selectedItemColor: Colors.black,
         currentIndex: idx,
         items: [
           BottomNavigationBarItem(
             backgroundColor: Colors.white,
             icon: Icon(
               Icons.location_on_sharp,
-              color: idx == 0 ? Colors.black : Colors.grey, // Black when selected
+              color: idx == 0 ? Colors.black : Colors.grey,
             ),
             label: "My Trip",
           ),
           BottomNavigationBarItem(
             icon: Icon(
               idx == 1 ? Icons.favorite : Icons.favorite_border_outlined,
-              color: idx == 1 ? Colors.red : Colors.grey, // Red when selected
+              color: idx == 1 ? Colors.red : Colors.grey,
             ),
             label: "Favorite",
           ),
           BottomNavigationBarItem(
             icon: Icon(
               idx == 2 ? Icons.person : Icons.person_outline,
-              color: idx == 2 ? Colors.black : Colors.grey, // Filled when selected
+              color: idx == 2 ? Colors.black : Colors.grey,
             ),
             label: "Profile",
           ),

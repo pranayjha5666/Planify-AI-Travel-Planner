@@ -4,7 +4,6 @@ import 'package:ai_travel_planner/Common/widget/custom_button.dart';
 import 'package:ai_travel_planner/Components/Screen/Create_Trip/Pages/travel_dates.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../Common/Lists/select_travel_list.dart';
 import '../../../../Model/travel_option_model.dart';
 import '../../../../Provider/CreateTripProvider.dart';
@@ -18,7 +17,7 @@ class SelectTraveller extends StatefulWidget {
 }
 
 class _SelectTravellerState extends State<SelectTraveller> {
-  int? _selectedIndex; // Tracks the selected card index
+  int? _selectedIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +44,7 @@ class _SelectTravellerState extends State<SelectTraveller> {
           const Text(
             "Who's Travelling",
             style: TextStyle(
-              fontSize: 35, // 5% of screen height
+              fontSize: 35,
               fontFamily: 'Outfit',
               fontWeight: FontWeight.w600,
               color: Colors.black,
@@ -66,23 +65,22 @@ class _SelectTravellerState extends State<SelectTraveller> {
               itemCount: selectTravelList.length,
               itemBuilder: (context, index) {
                 final option = selectTravelList[index];
-                final isSelected = _selectedIndex == index; // Check if selected
+                final isSelected = _selectedIndex == index;
                 return GestureDetector(
                   onTap: () {
                     setState(() {
-                      _selectedIndex = index; // Update the selected index
+                      _selectedIndex = index;
                     });
-                    // print("Selected: ${option.title}");
                   },
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       border: isSelected
-                          ? Border.all(color: Colors.black, width: 2) // Black outline for selected
-                          : Border.all(color: Colors.transparent), // No outline for unselected
-                      color: Color(0xffe7e7e7), // Card background
+                          ? Border.all(color: Colors.black, width: 2)
+                          : Border.all(color: Colors.transparent),
+                      color: Color(0xffe7e7e7),
                     ),
-                    margin: const EdgeInsets.symmetric(vertical: 10), // Add spacing here
+                    margin: const EdgeInsets.symmetric(vertical: 10),
                     padding: const EdgeInsets.all(14.0),
                     child: ListTile(
                       title: Text(
@@ -111,7 +109,7 @@ class _SelectTravellerState extends State<SelectTraveller> {
 
                   Provider.of<TripProvider>(context, listen: false).setTripData(
                     travelOption: TravelOption(id: selectedOption.id, title: selectedOption.title, desc: selectedOption.desc, icon: selectedOption.icon, people: selectedOption.people).toMap()
-                  );                  // Navigate to TravelDates screen
+                  );
                   Navigator.pushNamed(context, TravelDates.routeName);
                 } else {
                   print("No option selected.");

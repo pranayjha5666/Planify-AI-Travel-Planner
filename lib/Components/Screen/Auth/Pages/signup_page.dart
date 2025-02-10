@@ -23,7 +23,7 @@ class _SignupPageState extends State<SignupPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 
-  //firebase part
+  //firebase Part
   Future<void>createUserWithEmailAndPassword() async{
     try {
       Map<String, dynamic> userInfoMap = {
@@ -75,7 +75,7 @@ class _SignupPageState extends State<SignupPage> {
     if (!specialCharacter.hasMatch(value)) {
       return 'Password must contain at least 1 special character';
     }
-    return null; // Password is valid
+    return null;
   }
 
 

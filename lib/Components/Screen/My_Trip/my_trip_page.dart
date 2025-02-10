@@ -71,7 +71,7 @@ class _MyTripPageState extends State<MyTripPage> {
                   }
 
                   if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return const Startnewtripcard(); // Show this when no trips are found
+                    return const Startnewtripcard();
                   }
 
                   var trips = snapshot.data!;

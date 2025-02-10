@@ -7,7 +7,7 @@ import 'package:shimmer/shimmer.dart';
 
 
 class HotelInfo extends StatefulWidget {
-  final List hotelList; // Ensure type safety
+  final List hotelList;
 
   const HotelInfo({super.key, required this.hotelList});
 
@@ -16,8 +16,8 @@ class HotelInfo extends StatefulWidget {
 }
 
 class _HotelInfoState extends State<HotelInfo> {
-  final String? apiKey = dotenv.env["Mapapikey"];// Replace with your API key
-  Map<String, String> hotelPhotos = {}; // Store hotel images
+  Map<String, String> hotelPhotos = {};
+  final String? apiKey = dotenv.env["Mapapikey"];
 
   @override
   void initState() {
@@ -55,7 +55,7 @@ class _HotelInfoState extends State<HotelInfo> {
         }
       }
     }
-    return null; // Return null if no photo found
+    return null;
   }
 
   String processPrice(String price) {

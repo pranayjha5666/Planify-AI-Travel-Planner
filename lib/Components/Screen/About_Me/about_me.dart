@@ -12,13 +12,10 @@ class AboutMePage extends StatefulWidget {
 }
 
 class _AboutMePageState extends State<AboutMePage> {
-  // Function to open the email client
   _launchPhone() async {
     final Uri emailLaunchUri = Uri(
-
       scheme: 'tel',
       path: '+91 8329432361',
-
     );
     try {
       if (await canLaunchUrl(emailLaunchUri)) {
@@ -44,7 +41,6 @@ class _AboutMePageState extends State<AboutMePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Profile Picture
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: CircleAvatar(
@@ -61,7 +57,6 @@ class _AboutMePageState extends State<AboutMePage> {
                 ),
               ),
             ),
-            // About Card
             Card(
               elevation: 5,
               margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -94,9 +89,7 @@ class _AboutMePageState extends State<AboutMePage> {
                       fontWeight: FontWeight.w500,
                       color: Colors.black,
                     ),
-                      textAlign: TextAlign.center,  // Apply justify alignment here
-
-
+                      textAlign: TextAlign.center,
                       // maxLines: 4,
                       // overflow: TextOverflow.ellipsis,
                     ),
@@ -105,13 +98,11 @@ class _AboutMePageState extends State<AboutMePage> {
               ),
             ),
 
-            // Contact Me Button
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: CustomButton(
                 onTap: _launchPhone,
                 text: 'Contact Me',
-
               ),
             ),
           ],

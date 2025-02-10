@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../Common/widget/custom_button.dart';
 import '../../../../Common/widget/custom_textformfield.dart';
 import '../../../../responsive.dart';
@@ -19,7 +18,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isCurrentPasswordVisible = false;
-
   bool _isPasswordVisible = false;
   bool _isConfirmPasswordVisible = false;
 
@@ -50,7 +48,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     if (!specialCharacter.hasMatch(value)) {
       return 'Password must contain at least 1 special character';
     }
-    return null; // Password is valid
+    return null;
   }
 
 
@@ -69,23 +67,17 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     try {
       User? user = _auth.currentUser;
       String email = user!.email!;
-
-      // Re-authenticate user
       AuthCredential credential = EmailAuthProvider.credential(
         email: email,
         password: _currentPasswordController.text,
       );
-
       await user.reauthenticateWithCredential(credential);
-
-      // Change password
       await user.updatePassword(_newPasswordController.text);
 
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Password changed successfully")),
       );
-
-      Navigator.pop(context); // Go back to the profile page
+      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.message ?? "Failed to change password")),

@@ -3,7 +3,6 @@ import 'package:ai_travel_planner/Components/Screen/Create_Trip/Pages/select_bud
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:table_calendar/table_calendar.dart';
-
 import '../../../../Provider/CreateTripProvider.dart';
 
 class TravelDates extends StatefulWidget {
@@ -20,16 +19,6 @@ class _TravelDatesState extends State<TravelDates> {
   int? _totalNoOfDays;
   DateTime? _focusedDay = DateTime.now();
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final tripData =
-          Provider.of<TripProvider>(context, listen: false).tripData;
-      // print(tripData);
-      print("Stored Trip Data: ${tripData['travelOption']['title']}");
-    });
-  }
 
   void calculateTotalDays() {
     if (_startDate != null && _endDate != null) {

@@ -3,10 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-
-import '../../../../../Provider/addtofavprovider.dart';
 import '../../../Trip_Details/tripdetailspage.dart';
 
 class Otherhistory extends StatefulWidget {
@@ -16,7 +13,7 @@ class Otherhistory extends StatefulWidget {
   final String photourl;
   final trips;
   final int index;
-  final Function? onFavoriteUpdated; // Add callback here
+  final Function? onFavoriteUpdated;
 
   const Otherhistory({
     super.key,
@@ -36,43 +33,6 @@ class Otherhistory extends StatefulWidget {
 class _OtherhistoryState extends State<Otherhistory> {
   bool isFavorite = false;
 
-  @override
-  void initState() {
-    super.initState();
-    // _fetchFavoriteStatus();
-  }
-
-  // void _fetchFavoriteStatus() async {
-  //   DocumentSnapshot doc = await FirebaseFirestore.instance
-  //       .collection('UserTrips')
-  //       .doc(FirebaseAuth.instance.currentUser?.uid)
-  //       .collection("Places")
-  //       .doc(widget.trips.documentId)
-  //       .get();
-  //   if (doc.exists && doc.data() != null) {
-  //     setState(() {
-  //       isFavorite = doc["isFav"] ?? false;
-  //     });
-  //   }
-  // }
-
-
-  // void _toggleFavorite() async {
-  //   setState(() {
-  //     isFavorite = !isFavorite;
-  //   });
-  //   await FirebaseFirestore.instance
-  //       .collection('UserTrips')
-  //       .doc(FirebaseAuth.instance.currentUser?.uid)
-  //       .collection("Places")
-  //       .doc(widget.trips.documentId)
-  //       .update({"isFav": isFavorite});
-  //   if (widget.onFavoriteUpdated != null) {
-  //     widget.onFavoriteUpdated!(); // Call callback to notify the parent screen
-  //   }
-  // }
-
-
   void _deleteTrip() async {
     bool? confirmDelete = await showDialog(
       context: context,
@@ -81,11 +41,11 @@ class _OtherhistoryState extends State<Otherhistory> {
         content: Text("Are you sure you want to delete this trip?"),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context, false), // Cancel
+            onPressed: () => Navigator.pop(context, false),
             child: Text("Cancel"),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(context, true), // Confirm
+            onPressed: () => Navigator.pop(context, true),
             child: Text("Delete", style: TextStyle(color: Colors.red)),
           ),
         ],
@@ -102,7 +62,7 @@ class _OtherhistoryState extends State<Otherhistory> {
             .delete();
 
         if (widget.onFavoriteUpdated != null) {
-          widget.onFavoriteUpdated!(); // Notify parent screen
+          widget.onFavoriteUpdated!();
         }
 
         ScaffoldMessenger.of(context).showSnackBar(
@@ -120,8 +80,6 @@ class _OtherhistoryState extends State<Otherhistory> {
 
   @override
   Widget build(BuildContext context) {
-    // print(widget.trips.icondata);
-
     DateTime date = DateTime.parse(widget.dates);
     String formattedDate = DateFormat('dd MMM yyyy').format(date);
 
@@ -205,7 +163,6 @@ class _OtherhistoryState extends State<Otherhistory> {
                       size: 30,
                     ),
                   ))
-              // Text("✈︎",style: TextStyle(fontSize: 25),),
             ],
           ),
         ),

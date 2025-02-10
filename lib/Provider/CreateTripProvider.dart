@@ -11,7 +11,6 @@ class TripProvider extends ChangeNotifier {
     Map<String, dynamic>? coordinates,
     List<dynamic>? photoReferences,
     String? url,
-    // TravelOption? travelOption,
     Map<String,dynamic>?travelOption,
     String? startDate,
     String? endDate,
@@ -19,10 +18,7 @@ class TripProvider extends ChangeNotifier {
     Map<String,dynamic>? budget,
 
   }) {
-    // Create a new map with existing data
     Map<String, dynamic> newTripData = Map.from(_tripData);
-
-    // Only update fields that are not null
     if (name != null) newTripData['name'] = name;
     if (coordinates != null) newTripData['coordinates'] = coordinates;
     if (travelOption != null) newTripData['travelOption'] = travelOption;
@@ -32,7 +28,6 @@ class TripProvider extends ChangeNotifier {
     if (endDate != null) newTripData['endDate'] = endDate;
     if (totalNoOfDays != null) newTripData['totalNoOfDays'] = totalNoOfDays;
     if(budget!=null) newTripData['budget'] = budget;
-    // Update the _tripData with the new map
     _tripData = newTripData;
     notifyListeners();
   }

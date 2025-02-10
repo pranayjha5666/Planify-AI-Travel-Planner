@@ -19,7 +19,6 @@ Future<void> _firebaseMessageBackgroundHandler(RemoteMessage message) async {
     if (notification != null) {
       print("Saving notification: ${notification.title} - ${notification.body}");
 
-      // Save notification locally
       notifications.insert(
         0,
         jsonEncode({
@@ -29,7 +28,6 @@ Future<void> _firebaseMessageBackgroundHandler(RemoteMessage message) async {
         }),
       );
 
-      // Keep only the last 5 notifications
       if (notifications.length > 5) {
         notifications = notifications.sublist(0, 5);
       }
@@ -84,7 +82,6 @@ class NotificationServices {
     await _setupMessageHandler();
     final initialMessage = await messaging.getInitialMessage();
     if (initialMessage != null) {
-      // await _saveNotification(initialMessage);
       _handleNotificationTap();
     }
   }
@@ -113,7 +110,6 @@ class NotificationServices {
     RemoteNotification? notification = message.notification;
     AndroidNotification? android = message.notification?.android;
     if (notification != null && android != null) {
-      // Save the notification locally
       await _saveNotification(notification.title ?? "", notification.body ?? "");
 
       await _flutterLocalNotificationsPlugin.show(
@@ -130,19 +126,10 @@ class NotificationServices {
             icon: "@mipmap/ic_launcher",
           ),
         ),
-        payload: "NotificationPage", // Pass a payload to handle navigation
+        payload: "NotificationPage",
       );
     }
   }
-  // Future<void> saveNotification(RemoteMessage message) async {
-  //   RemoteNotification? notification = message.notification;
-  //   AndroidNotification? android = message.notification?.android;
-  //   if (notification != null && android != null) {
-  //     // Save the notification locally
-  //     await _saveNotification(notification.title ?? "", notification.body ?? "");
-  //
-  //   }
-  // }
 
 
   Future<void> _setupMessageHandler() async {
@@ -151,18 +138,12 @@ class NotificationServices {
     });
 
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      // saveNotification(message);
-      // _handleNotificationTap();
+
     });
 
-    // final initialMessage = await messaging.getInitialMessage();
-    // if (initialMessage != null) {
-    //   _handleNotificationTap();
-    // }
   }
 
   void _handleNotificationTap({String? payload}) {
-    // navigatorKey.currentState?.pushNamed(NotificationPage.routeName);
     Navigator.pushNamed(navigatorKey.currentContext!, NotificationScreen.routeName);
   }
 

@@ -26,9 +26,9 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   ProfileModel? profile;
   final ProfileService _profileService = ProfileService();
+  bool isLoading = false;
   XFile? _selectedImage;
   bool isEditing = false;
-  bool isLoading = false; // Add loading state
   late TextEditingController _nameController =
       TextEditingController(text: profile!.name);
 
@@ -45,6 +45,27 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  Future<void> _saveProfile() async {
+    setState(() {
+      isLoading = true;
+    });
+
+
+    if (_selectedImage != null) {
+      await CloudinaryService().updateProfileImage(_selectedImage!);
+    }
+    if (_nameController.text != profile!.name) {
+      await CloudinaryService().updateProfile(_nameController.text);
+    }
+
+    await loadProfile();
+
+    setState(() {
+      isEditing = false;
+      isLoading = false;
+    });
+  }
+
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
@@ -54,31 +75,6 @@ class _ProfilePageState extends State<ProfilePage> {
         _selectedImage = image;
       });
     }
-  }
-
-  Future<void> _saveProfile() async {
-    setState(() {
-      isLoading = true; // Show loading indicator
-    });
-
-    print(_selectedImage?.path);
-
-    if (_selectedImage != null) {
-      print("Inner");
-      await CloudinaryService().updateProfileImage(_selectedImage!);
-    }
-    if (_nameController.text != profile!.name) {
-      print("Inner2");
-      await CloudinaryService().updateProfile(_nameController.text);
-    }
-
-    await loadProfile();
-
-    setState(() {
-      // profile = updatedProfile;
-      isEditing = false;
-      isLoading = false; // Hide loading indicator after the changes are saved
-    });
   }
 
   @override
@@ -101,10 +97,9 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: Stack(
         children: [
-          // Main content of the page
           AbsorbPointer(
             absorbing:
-                isLoading, // This prevents interaction when isLoading is true
+                isLoading,
             child: profile == null
                 ? const Center(child: CircularProgressIndicator())
                 : SingleChildScrollView(
@@ -246,8 +241,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
           ),
-
-          // Show loading indicator when isLoading is true
           if (isLoading)
             Container(
               child: const Center(

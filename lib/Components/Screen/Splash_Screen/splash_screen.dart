@@ -82,8 +82,6 @@ class _SplashScreenState extends State<SplashScreen>
                     width: 15,
                     height: screenHeight * 0.02,
                   ),
-                  // SizedBox(width: 2,),
-
                   Text(appName)
                 ],
               ),
@@ -93,7 +91,6 @@ class _SplashScreenState extends State<SplashScreen>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // SizedBox(height: screenHeight * 0.02),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

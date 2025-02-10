@@ -4,25 +4,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class FetchData {
   final User? user = FirebaseAuth.instance.currentUser;
-
   late final CollectionReference tripCollection = FirebaseFirestore.instance
       .collection('UserTrips')
       .doc(user?.uid)
       .collection('Places');
-
 
   Stream<List<TripDetails>> getTrips() {
     return tripCollection.snapshots().map((snapshot) {
       List<TripDetails> trips = snapshot.docs.map((doc) {
         var data = doc.data() as Map<String, dynamic>;
         ;
-        return TripDetails.fromMap(data, doc.id); // Pass doc.id
+        return TripDetails.fromMap(data, doc.id);
       }).toList();
-
-      // Sort trips from newest to oldest using document ID (which is a timestamp)
       trips.sort((a, b) => int.parse(b.documentId).compareTo(int.parse(a.documentId)));
-
-
       return trips;
     });
   }

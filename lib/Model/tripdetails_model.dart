@@ -13,7 +13,7 @@ class TripDetails {
   final String icondata;
 
   TripDetails(
-      {required this.documentId, // Include in constructor
+      {required this.documentId,
       required this.location,
       required this.tripTitle,
       required this.startDate,
@@ -29,7 +29,7 @@ class TripDetails {
   factory TripDetails.fromMap(Map<String, dynamic> data, String docId) {
 
     return TripDetails(
-        documentId: docId, // Store Firestore document ID
+        documentId: docId,
         location: data['usertripdetails']['name'] ?? '',
         tripTitle: data['aitripdetails']['tripTitle'] ?? '',
         startDate:

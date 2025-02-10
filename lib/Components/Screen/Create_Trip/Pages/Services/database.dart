@@ -4,8 +4,7 @@ class DatabaseMethods{
 
   Future<void> addDetailsToDatabase(Map<String, dynamic> userInfoMap, String userTripId) async {
     String dateTimeId = DateTime.now().millisecondsSinceEpoch.toString();
-
-    userInfoMap['isFav'] = false; // Set isFav to false by default
+    userInfoMap['isFav'] = false;
 
     await FirebaseFirestore.instance
         .collection('UserTrips')

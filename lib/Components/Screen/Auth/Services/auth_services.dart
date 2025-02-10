@@ -3,7 +3,6 @@ import 'package:ai_travel_planner/Components/Screen/Home_Page/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 import '../../Create_Trip/Pages/Services/database.dart';
 
 class AuthServices {
@@ -37,7 +36,10 @@ class AuthServices {
 
   Future<void> handleGoogleSign(BuildContext context) async {
     try {
+      GoogleSignIn googleSignIn = GoogleSignIn();
+      await googleSignIn.signOut();
       final GoogleSignInAccount? gUser = await GoogleSignIn().signIn();
+
       if (gUser == null) return;
       final GoogleSignInAuthentication gAuth = await gUser.authentication;
       final AuthCredential credential = GoogleAuthProvider.credential(

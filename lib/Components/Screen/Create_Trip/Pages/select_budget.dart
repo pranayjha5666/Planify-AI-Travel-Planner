@@ -3,9 +3,9 @@ import 'package:ai_travel_planner/Components/Screen/Create_Trip/Pages/reveiew_tr
 import 'package:ai_travel_planner/Model/budget_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../Common/widget/custom_button.dart';
 import '../../../../Provider/CreateTripProvider.dart';
+
 class SelectBudget extends StatefulWidget {
   static const String routeName = "/create-trip/budget-screen";
 
@@ -16,8 +16,7 @@ class SelectBudget extends StatefulWidget {
 }
 
 class _SelectBudgetState extends State<SelectBudget> {
-  int? _selectedIndex; // Tracks the selected card index
-
+  int? _selectedIndex;
   @override
   Widget build(BuildContext context) {
     final isButtonEnabled = _selectedIndex != null;
@@ -43,7 +42,7 @@ class _SelectBudgetState extends State<SelectBudget> {
             const Text(
               "Budget",
               style: TextStyle(
-                fontSize: 35, // 5% of screen height
+                fontSize: 35,
                 fontFamily: 'Outfit',
                 fontWeight: FontWeight.w600,
                 color: Colors.black,
@@ -64,23 +63,22 @@ class _SelectBudgetState extends State<SelectBudget> {
                 itemCount: budgetList.length,
                 itemBuilder: (context, index) {
                   final option = budgetList[index];
-                  final isSelected = _selectedIndex == index; // Check if selected
+                  final isSelected = _selectedIndex == index;
                   return GestureDetector(
                     onTap: () {
                       setState(() {
-                        _selectedIndex = index; // Update the selected index
+                        _selectedIndex = index;
                       });
-                      print("Selected: ${option.title}");
-                    },
+                      },
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         border: isSelected
-                            ? Border.all(color: Colors.black, width: 2) // Black outline for selected
-                            : Border.all(color: Colors.transparent), // No outline for unselected
-                        color: Color(0xffe7e7e7), // Card background
+                            ? Border.all(color: Colors.black, width: 2)
+                            : Border.all(color: Colors.transparent),
+                        color: Color(0xffe7e7e7),
                       ),
-                      margin: const EdgeInsets.symmetric(vertical: 10), // Add spacing here
+                      margin: const EdgeInsets.symmetric(vertical: 10),
                       padding: const EdgeInsets.all(14.0),
                       child: ListTile(
                         title: Text(
@@ -102,14 +100,13 @@ class _SelectBudgetState extends State<SelectBudget> {
               ),
             ),
             if (isButtonEnabled)
-
               CustomButton(
                 onTap: () {
                   if (_selectedIndex != null) {
                     final selectedOption = budgetList[_selectedIndex!];
                     Provider.of<TripProvider>(context, listen: false).setTripData(
                         budget: BudgetModel(id: selectedOption.id, title: selectedOption.title, desc: selectedOption.desc, icon: selectedOption.icon).toMap()
-                    );                  // Navigate to TravelDates screen
+                    );
                     Navigator.pushNamed(context, ReviewTrip.routeName);
                   } else {
                     print("No option selected.");

@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ai_travel_planner/Model/tripdetails_model.dart';
 import 'package:lottie/lottie.dart';
 
-import '../Trip_Details/tripdetailspage.dart';
-
 class FavoriteTripsPage extends StatelessWidget {
   final User? user = FirebaseAuth.instance.currentUser;
 

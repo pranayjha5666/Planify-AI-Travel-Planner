@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 
 class ItenaryPage extends StatefulWidget {
-  // final String day;
   final Map<String, dynamic> itinerary;
   final String tripTitle;
 
@@ -41,7 +40,6 @@ class _ItenaryPageState extends State<ItenaryPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Horizontal Scrollable Tabs
             SizedBox(
               height: 50,
               child: ListView.builder(
@@ -73,7 +71,6 @@ class _ItenaryPageState extends State<ItenaryPage> {
               ),
             ),
             SizedBox(height: 10),
-            // Display Theme
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -88,7 +85,6 @@ class _ItenaryPageState extends State<ItenaryPage> {
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    // Activities List
                     ListView.builder(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
@@ -154,7 +150,6 @@ class _ItenaryPageState extends State<ItenaryPage> {
                                         repeat: true,
                                         fit: BoxFit.cover,
                                       ),
-                                      // Icon(Icons.timelapse_rounded, color: Colors.red),
                                       SizedBox(width: 5),
                                       Flexible(
                                           child: Text(ans.toString(),style: TextStyle(color: Colors.grey[300]),)),

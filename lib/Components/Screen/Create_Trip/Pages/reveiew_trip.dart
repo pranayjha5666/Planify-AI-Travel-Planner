@@ -3,7 +3,6 @@ import 'package:ai_travel_planner/Components/Screen/Create_Trip/Pages/generate_t
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../Provider/CreateTripProvider.dart';
 
 class ReviewTrip extends StatefulWidget {
@@ -17,18 +16,7 @@ class ReviewTrip extends StatefulWidget {
 
 class _ReviewTripState extends State<ReviewTrip> {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      final tripData =
-          Provider.of<TripProvider>(context, listen: false).tripData;
-      print(tripData['budget']['title']);
-      // print("Stored Trip Data: ${tripData['budget']}");
-    });
-  }
   String formattedDateRange="";
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +73,6 @@ class _ReviewTripState extends State<ReviewTrip> {
             _rowWidget("💰", "Budget", tripData['budget']['title']),
             Spacer(),
             CustomButton(onTap: (){
-              print(tripData);
               Navigator.pushNamedAndRemoveUntil(context, GenerateTrip.routeName,(route) => false);
             }, text: "Build My Trip")
 

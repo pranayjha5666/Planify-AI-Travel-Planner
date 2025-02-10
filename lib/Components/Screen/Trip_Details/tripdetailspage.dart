@@ -1,4 +1,3 @@
-import 'package:ai_travel_planner/Components/Screen/My_Trip/widget/Usertriplist_widget/otherhistory.dart';
 import 'package:ai_travel_planner/Components/Screen/Trip_Details/widget/hotel_info.dart';
 import 'package:ai_travel_planner/Components/Screen/Trip_Details/widget/placemustvisit.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -17,10 +16,7 @@ import '../Itinerary/itenary_page.dart';
 class TripDetailsPage extends StatefulWidget {
   static const String routeName = "/tripdetails";
   final TripDetails tripDetails;
-
-
   TripDetailsPage({required this.tripDetails});
-
   @override
   State<TripDetailsPage> createState() => _TripDetailsPageState();
 }
@@ -28,8 +24,6 @@ class TripDetailsPage extends StatefulWidget {
 class _TripDetailsPageState extends State<TripDetailsPage> {
   int _currentIndex = 0;
   bool isFavorite = false;
-
-
   @override
   void initState() {
     super.initState();
@@ -50,21 +44,6 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
     }
   }
 
-  void _toggleFavorite() async {
-    setState(() {
-      isFavorite = !isFavorite;
-
-    });
-    await FirebaseFirestore.instance
-        .collection('UserTrips')
-        .doc(FirebaseAuth.instance.currentUser?.uid)
-        .collection("Places")
-        .doc(widget.tripDetails.documentId)
-        .update({"isFav": isFavorite});
-
-
-
-  }
 
   String formatDate(String date) {
     DateTime dateTime = DateTime.parse(date);
@@ -73,7 +52,6 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    // print(widget.tripDetails);
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -118,16 +96,12 @@ class _TripDetailsPageState extends State<TripDetailsPage> {
                           setState(() {
                             isFavorite = !isFavorite;
                           });
-
-                          // Update favorite status in Firestore database
                           await FirebaseFirestore.instance
                               .collection('UserTrips')
                               .doc(FirebaseAuth.instance.currentUser?.uid)
                               .collection("Places")
                               .doc(widget.tripDetails.documentId)
                               .update({"isFav": isFavorite});
-
-                          // Update the favorite status in the provider
                           Provider.of<FavoriteStatusProvider>(context, listen: false)
                               .updateFavoriteStatus(isFavorite);
                         },

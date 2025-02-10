@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:shimmer/shimmer.dart';
 
 class Placemustvisit extends StatefulWidget {
-  final List mustVisitList; // Ensure type safety
+  final List mustVisitList;
 
   const Placemustvisit({super.key, required this.mustVisitList});
 
@@ -56,7 +56,7 @@ class _PlacemustvisitState extends State<Placemustvisit> {
         }
       }
     }
-    return null; // Return null if no photo found
+    return null;
   }
 
   @override

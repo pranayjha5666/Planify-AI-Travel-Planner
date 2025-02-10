@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     if (value.length < 8) {
       return 'Password must be at least 8 characters long';
     }
-    return null; // Password is valid
+    return null;
   }
   String? emailValidator(String? value) {
     if (value == null || value.isEmpty) {
@@ -41,8 +41,7 @@ class _LoginPageState extends State<LoginPage> {
     return null;
   }
 
-  // Firebase
-
+  // Firebase Part
   Future<void>signInWithEmailAndPassword() async{
     try {
       await AuthServices().signInWithEmailAndPassword(email: _emailcontroller.text, password: _passwordcontroller.text,context: context);
@@ -105,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   icon: Icon(Icons.arrow_back),
                 ),
-                SizedBox(height: screenHeight * 0.02), // Scaled spacing
+                SizedBox(height: screenHeight * 0.02),
                 Container(
                   margin: Responsive.isMobile(context)
                       ? EdgeInsets.only(top: 25)
@@ -114,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                     "Let's Sign You In",
                     style: TextStyle(
                       fontFamily: "OutFit",
-                      fontSize: screenHeight * 0.04, // Scaled font size
+                      fontSize: screenHeight * 0.04,
                       fontWeight: FontWeight.w800,
                     ),
                   ),

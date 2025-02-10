@@ -36,13 +36,8 @@ class _HelpAndSupportPageState extends State<HelpAndSupportPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              // Help and Support Info Section
               _buildHelpInfoSection(),
-          
-              // Contact Section (with Custom UI Design)
               _buildContactSection(),
-          
-              // Feedback Section
               _buildFeedbackSection(),
             ],
           ),
@@ -78,7 +73,6 @@ class _HelpAndSupportPageState extends State<HelpAndSupportPage> {
           ),
         ),
         SizedBox(height: 10),
-        // Example FAQ Section
         ExpansionTile(
           title: Text("What is the AI-powered travel planner app?"),
           children: [
@@ -135,7 +129,6 @@ class _HelpAndSupportPageState extends State<HelpAndSupportPage> {
   Widget _buildContactSection() {
     return GestureDetector(
       onTap: () {
-        // Navigate to the next page or show more information if needed
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -153,7 +146,7 @@ class _HelpAndSupportPageState extends State<HelpAndSupportPage> {
                 ),
                 clipBehavior: Clip.hardEdge,
                 child: CachedNetworkImage(
-                  imageUrl: "https://res.cloudinary.com/dqe9rpcml/image/upload/v1738787622/svydd0lnym3jog7ztlbu.jpg", // Example image URL
+                  imageUrl: "https://res.cloudinary.com/dqe9rpcml/image/upload/v1738787622/svydd0lnym3jog7ztlbu.jpg",
                   fit: BoxFit.cover,
                   placeholder: (context, url) => _shimmerEffect(width: 100, height: 150),
                   errorWidget: (context, url, error) => Icon(Icons.error),
@@ -200,10 +193,7 @@ class _HelpAndSupportPageState extends State<HelpAndSupportPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Add some space above the button
           SizedBox(height: 20),
-
-          // Custom TextFormField for feedback input
           TextFormField(
             controller: _feedbackController,
             decoration: InputDecoration(
@@ -217,7 +207,6 @@ class _HelpAndSupportPageState extends State<HelpAndSupportPage> {
             maxLines: 5,
           ),
 
-          // Feedback button
           SizedBox(height: 20),
           CustomButton(
             onTap: () {
@@ -237,7 +226,6 @@ class _HelpAndSupportPageState extends State<HelpAndSupportPage> {
     );
   }
 
-  // Save feedback to Firebase
   Future<void> _saveFeedback(String feedbackText) async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
     String email = FirebaseAuth.instance.currentUser!.email ?? 'anonymous@example.com';
@@ -249,7 +237,6 @@ class _HelpAndSupportPageState extends State<HelpAndSupportPage> {
         'timestamp': FieldValue.serverTimestamp(),
       });
 
-      // Optionally show a confirmation message
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Thank you for your feedback!")),
       );

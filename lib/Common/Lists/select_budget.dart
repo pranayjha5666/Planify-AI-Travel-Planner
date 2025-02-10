@@ -1,6 +1,4 @@
-import 'package:ai_travel_planner/Components/Screen/Create_Trip/Pages/select_budget.dart';
 import 'package:ai_travel_planner/Model/budget_model.dart';
-import 'package:ai_travel_planner/Model/travel_option_model.dart';
 import 'package:flutter/material.dart';
 
 List<BudgetModel> budgetList=[

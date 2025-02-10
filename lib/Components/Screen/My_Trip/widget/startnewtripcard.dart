@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 class Startnewtripcard extends StatelessWidget {
   const Startnewtripcard({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,7 +22,7 @@ class Startnewtripcard extends StatelessWidget {
             Text(
               "No Trip Planned Yet",
               style: TextStyle(
-                fontSize: 25, // 5% of screen height
+                fontSize: 25,
                 fontFamily: 'Outfit',
                 fontWeight: FontWeight.w500,
                 color: Colors.black,
@@ -34,7 +33,7 @@ class Startnewtripcard extends StatelessWidget {
               "Looks like its time to plan a new travel exoerience Get started below.",
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 20, // 5% of screen height
+                fontSize: 20,
                 fontFamily: 'Outfit',
                 color: Colors.grey.shade700,
               ),

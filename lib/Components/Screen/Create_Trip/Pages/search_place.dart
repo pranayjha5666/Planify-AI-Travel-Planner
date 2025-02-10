@@ -4,9 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 import 'package:http/http.dart' as http;
-
 import '../../../../Provider/CreateTripProvider.dart';
 
 class SearchPlace extends StatefulWidget {
@@ -52,7 +50,7 @@ class _SearchPlaceState extends State<SearchPlace> {
       if (response.statusCode == 200) {
         setState(() {
           listOfLocation =
-              data['predictions']; // Corrected key for autocomplete API
+              data['predictions'];
         });
       } else {
         throw Exception("Failed to fetch place suggestions");
@@ -70,11 +68,9 @@ class _SearchPlaceState extends State<SearchPlace> {
       String req = "$baseurl?place_id=$placeId&key=$apikey";
       var response = await http.get(Uri.parse(req));
       var data = json.decode(response.body);
-
       if (response.statusCode == 200) {
         var geometry = data['result']['geometry']['location'];
         var photos = data['result']['photos'] ?? [];
-        // Explicitly cast the photo references to List<String>
         var photoReferences = photos
             .take(5)
             .map((photo) => generatePhotoUrl(photo['photo_reference']))
@@ -82,8 +78,6 @@ class _SearchPlaceState extends State<SearchPlace> {
 
         var url = data['result']['url'];
         var name = data['result']['name'];
-
-        // Store the data in the provider
         Provider.of<TripProvider>(context, listen: false).setTripData(
           name: name,
           coordinates: geometry,
