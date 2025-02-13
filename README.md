@@ -80,5 +80,3 @@ Planify is an AI-powered travel planner app designed to help users effortlessly 
 ## Contributors
 - **Pranay Jha** - [GitHub](https://github.com/pranayjha5666)
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
