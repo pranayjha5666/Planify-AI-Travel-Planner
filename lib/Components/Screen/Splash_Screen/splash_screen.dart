@@ -2,7 +2,6 @@ import 'package:ai_travel_planner/Common/widget/custom_button.dart';
 import 'package:ai_travel_planner/Components/Screen/Splash_Screen/Services/splash_screen_services.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-
 import '../../../responsive.dart';
 
 class SplashScreen extends StatefulWidget {

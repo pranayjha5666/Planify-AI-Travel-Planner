@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  String getFirebaseErrorMessage(String errorCode) {
+    String getFirebaseErrorMessage(String errorCode) {
     switch (errorCode) {
       case 'invalid-credential':
         return 'Invalid email address or password.';

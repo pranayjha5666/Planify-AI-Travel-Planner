@@ -3,7 +3,6 @@ import 'package:ai_travel_planner/Components/Screen/Home_Page/home_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 class SplashScreenServices{
-
   Future<void> isLogin(BuildContext context) async {
     await Future.delayed(const Duration(seconds: 1));
     User? user=FirebaseAuth.instance.currentUser;
@@ -14,5 +13,4 @@ class SplashScreenServices{
       Navigator.pushNamed(context, LoginPage.routeName);
     }
   }
-
 }

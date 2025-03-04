@@ -77,8 +77,6 @@ class _SignupPageState extends State<SignupPage> {
     }
     return null;
   }
-
-
   String? emailValidator(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your email';
@@ -101,6 +99,7 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
+
     final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
